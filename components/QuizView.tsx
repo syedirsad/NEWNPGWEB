@@ -20,10 +20,10 @@ const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
                 href={quiz.isComingSoon ? undefined : quiz.link} 
                 target={quiz.isComingSoon ? undefined : "_blank"} 
                 rel={quiz.isComingSoon ? undefined : "noopener noreferrer"}
-                className={`w-full font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 group ${
+                className={`w-full font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 group transition-all duration-300 ${
                     quiz.isComingSoon 
                     ? 'bg-black/20 text-white/50 cursor-not-allowed' 
-                    : 'bg-white/10 text-white/90 border border-white/20 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]'
+                    : 'btn-glossy'
                 }`}
                 onClick={(e) => quiz.isComingSoon && e.preventDefault()}
             >

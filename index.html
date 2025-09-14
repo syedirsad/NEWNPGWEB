@@ -94,19 +94,20 @@
 
       /* Glossy Buttons */
       .btn-glossy {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.2);
-        transition: all 0.3s ease; transform: translateZ(20px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
       .btn-glossy:hover {
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.3);
-        transform: scale(1.05) translateZ(20px);
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.1));
+        box-shadow: 0 5px 12px rgba(0,0,0,0.35), inset 0 1px 2px rgba(255,255,255,0.3);
+        transform: scale(1.05) translateY(-2px);
       }
       .btn-glossy.active {
         background: linear-gradient(to right, #00c6ff, #0072ff);
         box-shadow: 0 0 15px rgba(0, 198, 255, 0.7), 0 0 20px rgba(0, 114, 255, 0.5), inset 0 1px 1px rgba(255,255,255,0.3);
+        border-color: rgba(0, 198, 255, 0.5);
       }
 
       /* Glowing Divider */

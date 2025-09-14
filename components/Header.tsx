@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center border-2 border-white/20 overflow-hidden relative group transition-all duration-300 hover:scale-110">
-                        <img src="https://raw.githubusercontent.com/syedirsad/CHAP1/main/logo.png" alt="NPG Logo" className="w-full h-full object-cover rounded-full" />
+                        <img src="https://cdn.jsdelivr.net/gh/syedirsad/CHAP1@main/logo.png" alt="NPG Logo" className="w-full h-full object-cover rounded-full" />
                         <div 
                             className="absolute inset-0 bg-cyan-400 opacity-0 group-hover:opacity-40 transition-opacity duration-300" 
                             style={{ filter: 'blur(10px)' }}>

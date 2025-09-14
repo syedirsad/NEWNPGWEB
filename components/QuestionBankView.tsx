@@ -68,7 +68,7 @@ const ClassSelection: React.FC<{onSelect: (classNum: ClassNumber) => void}> = ({
 );
 
 const BankCard: React.FC<{ bank: QuestionBank }> = ({ bank }) => {
-    const buttonClass = "w-full bg-white/10 text-white/90 font-semibold py-3 px-4 rounded-lg border border-white/20 transition-all duration-300 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] flex items-center justify-center gap-2";
+    const buttonClass = "w-full text-white/90 font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 btn-glossy";
 
     return (
         <div className="card-3d p-8 flex flex-col items-center text-center">

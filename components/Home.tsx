@@ -5,8 +5,8 @@ interface HomeProps {
     setView: (view: ViewType, materialScreen?: MaterialScreen) => void;
 }
 
-const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; className?: string; }> = ({ onClick, href, children, className = '' }) => {
-    const commonClasses = `w-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(7,191,255,0.7)] flex items-center justify-center gap-2 group ${className}`;
+const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; className?: string; type?: 'primary' | 'secondary' }> = ({ onClick, href, children, className = '', type = 'primary' }) => {
+    const commonClasses = `w-full text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 group btn-glossy ${type === 'primary' ? 'active' : ''} ${className}`;
     
     if (href) {
         return (
@@ -97,7 +97,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
         <div>
             <section className="text-center py-20 sm:py-28 relative parallax-section" data-parallax-speed="0.3">
                  <div className="absolute inset-0 flex items-center justify-center opacity-10" aria-hidden="true">
-                    <img src="https://raw.githubusercontent.com/syedirsad/CHAP1/main/logo.png" alt="" className="w-48 h-48 sm:w-64 sm:h-64 object-contain animate-pulse" style={{ animationDuration: '4s' }} />
+                    <img src="https://cdn.jsdelivr.net/gh/syedirsad/CHAP1@main/logo.png" alt="" className="w-48 h-48 sm:w-64 sm:h-64 object-contain animate-pulse" style={{ animationDuration: '4s' }} />
                 </div>
                 <div className="relative z-10">
                     <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white animate-glow">
@@ -165,10 +165,10 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                     badgeBgClass="bg-slate-100 text-slate-800"
                 >
                     <div className="space-y-3">
-                        <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" className="bg-white/10 text-white/90 border border-white/20 hover:bg-white/20">
+                        <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" type="secondary">
                              <i className="fas fa-download"></i><span>English Medium</span>
                         </ActionButton>
-                         <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" className="bg-white/10 text-white/90 border border-white/20 hover:bg-white/20">
+                         <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" type="secondary">
                              <i className="fas fa-download"></i><span>ગુજરાતી માધ્યમ</span>
                         </ActionButton>
                     </div>

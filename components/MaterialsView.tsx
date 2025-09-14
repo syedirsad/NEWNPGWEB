@@ -26,7 +26,7 @@ const MaterialCard: React.FC<{ material: Material }> = ({ material }) => (
              <span className="uppercase font-semibold tracking-wider">{material.type}</span>
              <span>{material.size}</span>
         </div>
-        <a href={material.link} target="_blank" rel="noopener noreferrer" className="w-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(7,191,255,0.7)] flex items-center justify-center gap-2 group mt-auto">
+        <a href={material.link} target="_blank" rel="noopener noreferrer" className="w-full text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 group mt-auto btn-glossy active">
             <span>View PDF</span><i className="fas fa-external-link-alt transform group-hover:scale-110 transition-transform"></i>
         </a>
     </div>
@@ -45,7 +45,7 @@ const CategoryCard: React.FC<{title: string, description: string, badge: string,
             <p className="text-white/80 mb-1 text-sm">{description}</p>
         </div>
          <div className="mt-6">
-            <button className="w-full bg-white/10 text-white/90 font-semibold py-3 px-4 rounded-lg border border-white/20 transition-all duration-300 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] flex items-center justify-center gap-2 group">
+            <button className="w-full text-white/90 font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 group btn-glossy">
                 <span>View Materials</span><i className="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
             </button>
         </div>

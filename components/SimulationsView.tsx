@@ -89,7 +89,7 @@ const SimulationList: React.FC<{classNum: ClassNumber, onBack: () => void}> = ({
                                         href={sim.link} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-2 px-5 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(7,191,255,0.7)] flex items-center justify-center gap-2 group"
+                                        className="text-white font-semibold py-2 px-5 rounded-full text-sm flex items-center justify-center gap-2 group btn-glossy active"
                                     >
                                         <span>Launch</span>
                                         <i className="fas fa-external-link-alt transform group-hover:scale-110 transition-transform"></i>
