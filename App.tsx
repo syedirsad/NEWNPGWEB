@@ -5,6 +5,7 @@ import Home from './components/Home';
 import QuizView from './components/QuizView';
 import MaterialsView from './components/MaterialsView';
 import QuestionBankView from './components/QuestionBankView';
+import SimulationsView from './components/SimulationsView';
 import Footer from './components/Footer';
 import { ViewType, MaterialScreen } from './types';
 
@@ -27,6 +28,8 @@ const App: React.FC = () => {
                 return <MaterialsView initialScreen={initialMaterialScreen} />;
             case 'question-bank':
                 return <QuestionBankView />;
+            case 'simulations':
+                return <SimulationsView />;
             case 'home':
             default:
                 return <Home setView={handleSetView} />;

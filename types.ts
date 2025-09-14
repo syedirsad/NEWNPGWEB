@@ -20,7 +20,7 @@ export interface Quiz {
     isComingSoon?: boolean;
 }
 
-export type ViewType = 'home' | 'quizzes' | 'materials' | 'question-bank';
+export type ViewType = 'home' | 'quizzes' | 'materials' | 'question-bank' | 'simulations';
 
 export type MaterialType = 'ncert' | 'neet';
 
@@ -43,4 +43,22 @@ export interface QuestionBank {
 export interface ClassQuestionBanks {
     '11': QuestionBank[];
     '12': QuestionBank[];
+}
+
+// Defines the structure for a single simulation
+export interface Simulation {
+    topic: string;
+    link: string;
+}
+
+// Defines a unit containing multiple simulations
+export interface SimulationUnit {
+    unitName: string;
+    simulations: Simulation[];
+}
+
+// Organizes simulation units by class number
+export interface ClassSimulations {
+    '11': SimulationUnit[];
+    '12': SimulationUnit[];
 }

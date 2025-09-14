@@ -32,6 +32,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpe
         { label: "Quizzes", icon: "fas fa-question-circle", view: 'quizzes' as ViewType },
         { label: "Materials", icon: "fas fa-book-open", view: 'materials' as ViewType },
         { label: "Question Bank", icon: "fas fa-archive", view: 'question-bank' as ViewType },
+        { label: "Simulations", icon: "fas fa-flask", view: 'simulations' as ViewType },
     ];
 
     return (
