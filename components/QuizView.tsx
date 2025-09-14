@@ -3,7 +3,7 @@ import { class11Quizzes, class12Quizzes } from '../data/quizzes';
 import { Quiz } from '../types';
 
 const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
-    <div className={`bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col ${quiz.isComingSoon ? 'opacity-90' : ''}`}>
+    <div className={`card-3d p-6 flex flex-col ${quiz.isComingSoon ? 'opacity-90' : ''}`}>
         <div className="flex items-start justify-between mb-4">
             <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${quiz.iconBgClass}`}>
                 <i className={quiz.icon}></i>
@@ -11,9 +11,9 @@ const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
             {quiz.isComingSoon && <div className="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Coming Soon</div>}
         </div>
         <div className="flex-grow">
-            <h3 className="font-poppins text-xl font-bold mb-2 text-gray-800">{quiz.title}</h3>
-            <p className="text-gray-700 mb-1">{quiz.description}</p>
-            <span className="text-sm text-gray-600 font-medium">{quiz.chapterInfo}</span>
+            <h3 className="font-poppins text-xl font-bold mb-2 text-white">{quiz.title}</h3>
+            <p className="text-white/80 mb-1">{quiz.description}</p>
+            <span className="text-sm text-white/70 font-medium">{quiz.chapterInfo}</span>
         </div>
         <div className="mt-6">
             <a 
@@ -22,8 +22,8 @@ const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
                 rel={quiz.isComingSoon ? undefined : "noopener noreferrer"}
                 className={`w-full font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 group ${
                     quiz.isComingSoon 
-                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
-                    : 'bg-white/80 text-gray-800 border-2 border-white/50 hover:bg-white hover:text-[#1D3557] hover:shadow-lg'
+                    ? 'bg-black/20 text-white/50 cursor-not-allowed' 
+                    : 'bg-white/10 text-white/90 border border-white/20 hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]'
                 }`}
                 onClick={(e) => quiz.isComingSoon && e.preventDefault()}
             >
@@ -37,7 +37,7 @@ const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
 
 const QuizSection: React.FC<{ title: string, quizzes: Quiz[] }> = ({ title, quizzes }) => (
     <section className="mb-16">
-        <h2 className="font-poppins text-3xl font-bold mb-8 text-center text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">{title}</h2>
+        <h2 className="section-title text-3xl text-center mb-8">{title}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {quizzes.map((quiz) => (
                 <QuizCard key={quiz.title} quiz={quiz} />
@@ -50,16 +50,16 @@ const QuizSection: React.FC<{ title: string, quizzes: Quiz[] }> = ({ title, quiz
 const QuizView: React.FC = () => {
     return (
         <div>
-            <section className="text-center py-12 sm:py-16">
-                <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">
+            <section className="text-center py-12 sm:py-16 parallax-section" data-parallax-speed="0.3">
+                <h1 className="section-title text-4xl sm:text-5xl mb-4">
                     NEET/JEE Chapterwise Quizzes
                 </h1>
-                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
+                <p className="section-subtitle text-lg sm:text-xl">
                     Select your class to start practicing with our chapter-specific quizzes.
                 </p>
             </section>
             
-            <div className="space-y-16">
+            <div className="space-y-16 parallax-section" data-parallax-speed="0.1">
                 <QuizSection title="Class 11 Quizzes" quizzes={class11Quizzes} />
                 <QuizSection title="Class 12 Quizzes" quizzes={class12Quizzes} />
             </div>

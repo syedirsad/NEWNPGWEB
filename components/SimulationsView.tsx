@@ -29,31 +29,31 @@ const SimulationsView: React.FC = () => {
         }
     };
 
-    return <div>{renderContent()}</div>;
+    return <div className="parallax-section" data-parallax-speed="0.1">{renderContent()}</div>;
 };
 
 const ViewHeader: React.FC<{title: string, subtitle: string, onBack?: () => void}> = ({ title, subtitle, onBack }) => (
     <div className="mb-12">
         {onBack && (
-             <button onClick={onBack} className="flex items-center gap-2 font-semibold text-white/80 hover:text-white mb-6 transition-colors [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
+             <button onClick={onBack} className="interactive-link-text flex items-center gap-2 font-semibold text-white/80 mb-6">
                 <i className="fas fa-arrow-left"></i>
                 <span>Back to Class Selection</span>
             </button>
         )}
         <div className="text-center">
-            <h1 className="font-poppins text-4xl sm:text-5xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">{title}</h1>
-            <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">{subtitle}</p>
+            <h1 className="section-title text-4xl sm:text-5xl mb-4">{title}</h1>
+            <p className="section-subtitle text-lg sm:text-xl">{subtitle}</p>
         </div>
     </div>
 );
 
 const SelectionCard: React.FC<{title: string, description: string, icon: string, onClick: () => void}> = ({ title, description, icon, onClick }) => (
-     <div onClick={onClick} className="bg-white/60 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center text-center cursor-pointer">
+     <div onClick={onClick} className="card-3d p-8 flex flex-col items-center text-center cursor-pointer">
         <div className="w-20 h-20 rounded-full flex items-center justify-center text-white text-4xl shadow-md bg-gradient-to-br from-emerald-500 to-green-600 mb-6">
             <i className={icon}></i>
         </div>
-        <h3 className="font-poppins text-2xl font-bold mb-2 text-gray-800">{title}</h3>
-        <p className="text-gray-700">{description}</p>
+        <h3 className="font-poppins text-2xl font-bold mb-2 text-white">{title}</h3>
+        <p className="text-white/80">{description}</p>
     </div>
 );
 
@@ -79,17 +79,17 @@ const SimulationList: React.FC<{classNum: ClassNumber, onBack: () => void}> = ({
             />
             <div className="space-y-10">
                 {units.map((unit: SimulationUnit) => (
-                    <div key={unit.unitName} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20">
-                        <h3 className="font-poppins text-2xl font-bold mb-4 text-gray-800 border-b-2 border-cyan-500/30 pb-3">{unit.unitName}</h3>
+                    <div key={unit.unitName} className="card-3d p-6">
+                        <h3 className="font-poppins text-2xl font-bold mb-4 text-white border-b-2 border-cyan-500/30 pb-3">{unit.unitName}</h3>
                         <ul className="space-y-3">
                             {unit.simulations.map(sim => (
-                                <li key={sim.topic} className="flex items-center justify-between p-3 rounded-lg transition-colors hover:bg-white/40">
-                                    <span className="font-semibold text-gray-700">{sim.topic}</span>
+                                <li key={sim.topic} className="flex items-center justify-between p-3 rounded-lg transition-colors hover:bg-black/20 group">
+                                    <span className="font-semibold text-white/90 transition-colors duration-300 group-hover:text-cyan-300">{sim.topic}</span>
                                     <a 
                                         href={sim.link} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-2 px-5 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2 group"
+                                        className="bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-2 px-5 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(7,191,255,0.7)] flex items-center justify-center gap-2 group"
                                     >
                                         <span>Launch</span>
                                         <i className="fas fa-external-link-alt transform group-hover:scale-110 transition-transform"></i>

@@ -15,10 +15,10 @@ const NavItem: React.FC<{
 }> = ({ label, icon, isActive, onClick }) => (
     <button
         onClick={onClick}
-        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 transform btn-glossy ${
             isActive 
-            ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg' 
-            : 'text-gray-700 hover:bg-gray-100'
+            ? 'active' 
+            : ''
         }`}
     >
         <i className={icon}></i>
@@ -36,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpe
     ];
 
     return (
-        <nav className="bg-white sticky top-[80px] sm:top-[84px] z-40 shadow-md">
+        <nav className="glass-nav sticky top-[80px] sm:top-[84px] z-40">
             {/* Desktop Navigation */}
             <div className="max-w-[1400px] mx-auto px-2 sm:px-6 lg:px-8">
                 <div className="hidden sm:flex justify-around sm:justify-start py-2 space-x-0 sm:space-x-2">
@@ -54,7 +54,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpe
 
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
-                 <div className="sm:hidden bg-white border-t border-gray-200">
+                 <div className="sm:hidden border-t border-white/10">
                     <div className="px-2 pt-2 pb-3 space-y-1">
                         {navLinks.map((link) => (
                            <button
@@ -63,7 +63,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpe
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-md font-medium text-left transition-colors duration-200 ${
                                     currentView === link.view
                                     ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md'
-                                    : 'text-gray-700 hover:bg-gray-100'
+                                    : 'text-white/80 hover:bg-white/10'
                                 }`}
                             >
                                 <i className={`${link.icon} w-5 text-center`}></i>

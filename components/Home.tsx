@@ -5,8 +5,8 @@ interface HomeProps {
     setView: (view: ViewType, materialScreen?: MaterialScreen) => void;
 }
 
-const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; }> = ({ onClick, href, children }) => {
-    const commonClasses = "w-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2 group";
+const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; className?: string; }> = ({ onClick, href, children, className = '' }) => {
+    const commonClasses = `w-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(7,191,255,0.7)] flex items-center justify-center gap-2 group ${className}`;
     
     if (href) {
         return (
@@ -36,7 +36,7 @@ const ResourceCard: React.FC<{
     href?: string;
     children?: React.ReactNode;
 }> = ({ title, description, icon, iconBgClass, buttonText, badge, badgeBgClass, onClick, href, children }) => (
-    <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col">
+    <div className="card-3d flex flex-col p-6">
         <div className="flex items-start justify-between mb-4">
             <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${iconBgClass}`}>
                 <i className={icon}></i>
@@ -44,8 +44,8 @@ const ResourceCard: React.FC<{
             {badge && <div className={`px-3 py-1 rounded-full text-xs font-bold ${badgeBgClass}`}>{badge}</div>}
         </div>
         <div className="flex-grow text-left">
-            <h3 className="font-poppins text-xl font-bold text-gray-800 mb-2">{title}</h3>
-            <p className="text-gray-700 mb-4 text-sm leading-relaxed">{description}</p>
+            <h3 className="font-poppins text-xl font-bold text-white mb-2">{title}</h3>
+            <p className="text-white/80 mb-4 text-sm leading-relaxed">{description}</p>
         </div>
         <div className="mt-auto">
             {children}
@@ -68,15 +68,15 @@ const CommunityCard: React.FC<{
     iconBgClass: string;
     buttonBgClass: string;
 }> = ({ title, description, icon, buttonText, link, iconBgClass, buttonBgClass }) => (
-    <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col text-center">
+    <div className="card-3d flex flex-col text-center p-6">
         <div className="mx-auto mb-4">
             <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white text-3xl shadow-md ${iconBgClass}`}>
                 <i className={icon}></i>
             </div>
         </div>
         <div className="flex-grow">
-            <h3 className="font-poppins text-xl font-bold text-gray-800 mb-2">{title}</h3>
-            <p className="text-gray-700 mb-6 text-sm">{description}</p>
+            <h3 className="font-poppins text-xl font-bold text-white mb-2">{title}</h3>
+            <p className="text-white/80 mb-6 text-sm">{description}</p>
         </div>
         <div className="mt-auto">
             <a 
@@ -95,16 +95,21 @@ const CommunityCard: React.FC<{
 const Home: React.FC<HomeProps> = ({ setView }) => {
     return (
         <div>
-            <section className="text-center py-12 sm:py-20">
-                <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white text-shadow-lg [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">
-                    Your NEET Physics Companion
-                </h1>
-                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
-                    Access chapter-wise quizzes, comprehensive study materials, and detailed question banks to ace your exams.
-                </p>
+            <section className="text-center py-20 sm:py-28 relative parallax-section" data-parallax-speed="0.3">
+                 <div className="absolute inset-0 flex items-center justify-center opacity-10" aria-hidden="true">
+                    <img src="https://raw.githubusercontent.com/syedirsad/CHAP1/main/logo.png" alt="" className="w-48 h-48 sm:w-64 sm:h-64 object-contain animate-pulse" style={{ animationDuration: '4s' }} />
+                </div>
+                <div className="relative z-10">
+                    <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white animate-glow">
+                        NEET PHYSICS GUJARATI
+                    </h1>
+                    <p className="text-xl sm:text-2xl text-white/90 font-medium max-w-3xl mx-auto" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                        Learn Smarter
+                    </p>
+                </div>
             </section>
 
-            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 parallax-section" data-parallax-speed="0.1">
                  <ResourceCard
                     title="Chapterwise Quizzes"
                     description="Test your knowledge with quizzes for every chapter of Class 11 & 12."
@@ -160,20 +165,22 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                     badgeBgClass="bg-slate-100 text-slate-800"
                 >
                     <div className="space-y-3">
-                        <a href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white/80 text-gray-800 font-semibold py-2 px-4 rounded-lg border-2 border-white/50 transition-all duration-300 hover:bg-white hover:border-white flex items-center justify-center gap-2">
+                        <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" className="bg-white/10 text-white/90 border border-white/20 hover:bg-white/20">
                              <i className="fas fa-download"></i><span>English Medium</span>
-                        </a>
-                         <a href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white/80 text-gray-800 font-semibold py-2 px-4 rounded-lg border-2 border-white/50 transition-all duration-300 hover:bg-white hover:border-white flex items-center justify-center gap-2">
+                        </ActionButton>
+                         <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" className="bg-white/10 text-white/90 border border-white/20 hover:bg-white/20">
                              <i className="fas fa-download"></i><span>ગુજરાતી માધ્યમ</span>
-                        </a>
+                        </ActionButton>
                     </div>
                 </ResourceCard>
             </section>
 
-             <section>
+             <hr className="glowing-divider" />
+
+             <section className="parallax-section" data-parallax-speed="0.05">
                 <div className="text-center mb-12">
-                     <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">Join Our Learning Community</h2>
-                    <p className="text-lg text-white/90 font-medium max-w-2xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">Connect with thousands of NEET aspirants and get your doubts solved.</p>
+                     <h2 className="section-title text-3xl sm:text-4xl">Join Our Learning Community</h2>
+                    <p className="section-subtitle text-lg">Connect with thousands of NEET aspirants and get your doubts solved.</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <CommunityCard 
@@ -183,7 +190,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                         buttonText="Subscribe Now"
                         link="https://www.youtube.com/@npgujarati"
                         iconBgClass="bg-red-600"
-                        buttonBgClass="bg-red-500 hover:bg-red-600"
+                        buttonBgClass="bg-red-500 hover:bg-red-600 hover:shadow-[0_0_15px_rgba(239,68,68,0.7)]"
                     />
                      <CommunityCard 
                         title="WhatsApp"
@@ -192,7 +199,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                         buttonText="Join Group"
                         link="https://chat.whatsapp.com/LGeExJ4a5562e13B04uuQm"
                         iconBgClass="bg-green-500"
-                        buttonBgClass="bg-green-500 hover:bg-green-600"
+                        buttonBgClass="bg-green-500 hover:bg-green-600 hover:shadow-[0_0_15px_rgba(34,197,94,0.7)]"
                     />
                      <CommunityCard 
                         title="Telegram"
@@ -201,7 +208,7 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                         buttonText="Join Channel"
                         link="https://t.me/neet_physics_gujarati"
                         iconBgClass="bg-sky-500"
-                        buttonBgClass="bg-sky-500 hover:bg-sky-600"
+                        buttonBgClass="bg-sky-500 hover:bg-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.7)]"
                     />
                      <CommunityCard 
                         title="Instagram"
@@ -209,8 +216,8 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                         icon="fab fa-instagram"
                         buttonText="Follow Us"
                         link="https://instagram.com/neet_physics.gujarati"
-                        iconBgClass="bg-pink-600"
-                        buttonBgClass="bg-pink-500 hover:bg-pink-600"
+                        iconBgClass="bg-gradient-to-br from-purple-600 to-pink-600"
+                        buttonBgClass="bg-gradient-to-r from-purple-500 to-pink-500 hover:shadow-[0_0_15px_rgba(219,39,119,0.7)]"
                     />
                 </div>
             </section>
