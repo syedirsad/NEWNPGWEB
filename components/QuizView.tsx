@@ -3,27 +3,27 @@ import { class11Quizzes, class12Quizzes } from '../data/quizzes';
 import { Quiz } from '../types';
 
 const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
-    <div className={`bg-white/70 backdrop-blur-xl rounded-2xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col ${quiz.isComingSoon ? 'opacity-70' : ''}`}>
-        <div className="flex items-center justify-between mb-4">
+    <div className={`bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col ${quiz.isComingSoon ? 'opacity-90' : ''}`}>
+        <div className="flex items-start justify-between mb-4">
             <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${quiz.iconBgClass}`}>
                 <i className={quiz.icon}></i>
             </div>
-            {quiz.isComingSoon && <div className="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">Coming Soon</div>}
+            {quiz.isComingSoon && <div className="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Coming Soon</div>}
         </div>
         <div className="flex-grow">
             <h3 className="font-poppins text-xl font-bold mb-2 text-gray-800">{quiz.title}</h3>
-            <p className="text-gray-600 mb-1">{quiz.description}</p>
-            <span className="text-sm text-gray-500 font-medium">{quiz.chapterInfo}</span>
+            <p className="text-gray-700 mb-1">{quiz.description}</p>
+            <span className="text-sm text-gray-600 font-medium">{quiz.chapterInfo}</span>
         </div>
         <div className="mt-6">
             <a 
                 href={quiz.isComingSoon ? undefined : quiz.link} 
                 target={quiz.isComingSoon ? undefined : "_blank"} 
                 rel={quiz.isComingSoon ? undefined : "noopener noreferrer"}
-                className={`w-full font-semibold py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all duration-300 group ${
+                className={`w-full font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 group ${
                     quiz.isComingSoon 
                     ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
-                    : 'bg-white text-[#1D3557] border-2 border-gray-200 hover:bg-gradient-to-r hover:from-[#667eea] hover:to-[#764ba2] hover:text-white hover:border-transparent'
+                    : 'bg-white/80 text-gray-800 border-2 border-white/50 hover:bg-white hover:text-[#1D3557] hover:shadow-lg'
                 }`}
                 onClick={(e) => quiz.isComingSoon && e.preventDefault()}
             >
@@ -37,7 +37,7 @@ const QuizCard: React.FC<{ quiz: Quiz }> = ({ quiz }) => (
 
 const QuizSection: React.FC<{ title: string, quizzes: Quiz[] }> = ({ title, quizzes }) => (
     <section className="mb-16">
-        <h2 className="font-poppins text-3xl font-bold mb-8 text-center">{title}</h2>
+        <h2 className="font-poppins text-3xl font-bold mb-8 text-center text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">{title}</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {quizzes.map((quiz) => (
                 <QuizCard key={quiz.title} quiz={quiz} />
@@ -50,11 +50,11 @@ const QuizSection: React.FC<{ title: string, quizzes: Quiz[] }> = ({ title, quiz
 const QuizView: React.FC = () => {
     return (
         <div>
-            <section className="text-center py-16 sm:py-24">
-                <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 bg-gradient-to-r from-amber-500 to-red-500 text-transparent bg-clip-text">
+            <section className="text-center py-12 sm:py-16">
+                <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">
                     NEET/JEE Chapterwise Quizzes
                 </h1>
-                <p className="text-lg sm:text-xl text-gray-600 font-medium max-w-3xl mx-auto">
+                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
                     Select your class to start practicing with our chapter-specific quizzes.
                 </p>
             </section>

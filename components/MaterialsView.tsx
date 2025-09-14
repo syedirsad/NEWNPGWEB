@@ -11,41 +11,41 @@ interface MaterialsViewProps {
 }
 
 const MaterialCard: React.FC<{ material: Material }> = ({ material }) => (
-    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+    <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col">
         <div className="flex items-start gap-4 mb-4">
             <div className="w-12 h-12 flex-shrink-0 rounded-lg flex items-center justify-center text-white text-xl shadow-md bg-gradient-to-br from-purple-500 to-indigo-600">
                 <i className={material.icon}></i>
             </div>
             <div>
-                <h3 className="font-poppins text-lg font-bold leading-tight">{material.title}</h3>
-                <p className="text-sm text-gray-500">{material.subTitle}</p>
+                <h3 className="font-poppins text-lg font-bold leading-tight text-gray-800">{material.title}</h3>
+                <p className="text-sm text-gray-600">{material.subTitle}</p>
             </div>
         </div>
-        <p className="text-gray-700 leading-relaxed flex-grow mb-4">{material.description}</p>
-        <div className="text-xs text-gray-500 flex justify-between items-center bg-gray-500/5 px-3 py-2 rounded-lg mb-4">
+        <p className="text-gray-700 leading-relaxed flex-grow mb-4 text-sm">{material.description}</p>
+        <div className="text-xs text-gray-500 flex justify-between items-center bg-gray-500/10 px-3 py-2 rounded-lg mb-4">
              <span className="uppercase font-semibold tracking-wider">{material.type}</span>
              <span>{material.size}</span>
         </div>
-        <a href={material.link} target="_blank" rel="noopener noreferrer" className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 group">
+        <a href={material.link} target="_blank" rel="noopener noreferrer" className="w-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2 group">
             <span>View PDF</span><i className="fas fa-external-link-alt transform group-hover:scale-110 transition-transform"></i>
         </a>
     </div>
 );
 
 const CategoryCard: React.FC<{title: string, description: string, badge: string, icon:string, iconBg: string, onClick: () => void}> = ({ title, description, badge, icon, iconBg, onClick }) => (
-    <div onClick={onClick} className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col cursor-pointer">
+    <div onClick={onClick} className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col cursor-pointer">
         <div className="flex items-start justify-between mb-4">
-             <div className={`w-16 h-16 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${iconBg}`}>
+             <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${iconBg}`}>
                 <i className={icon}></i>
             </div>
-            {badge && <div className="px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-semibold">{badge}</div>}
+            {badge && <div className="px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-bold">{badge}</div>}
         </div>
         <div className="flex-grow">
-             <h3 className="font-poppins text-xl font-bold mb-2">{title}</h3>
-            <p className="text-gray-600 mb-1">{description}</p>
+             <h3 className="font-poppins text-xl font-bold mb-2 text-gray-800">{title}</h3>
+            <p className="text-gray-700 mb-1 text-sm">{description}</p>
         </div>
          <div className="mt-6">
-            <button className="w-full bg-white/80 text-[#1D3557] font-semibold py-3 px-4 rounded-full border-2 border-transparent hover:bg-gradient-to-r hover:from-[#667eea] hover:to-[#764ba2] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group">
+            <button className="w-full bg-white/80 text-gray-800 font-semibold py-3 px-4 rounded-lg border-2 border-white/50 transition-all duration-300 hover:bg-white hover:text-[#1D3557] hover:border-transparent hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2 group">
                 <span>View Materials</span><i className="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
             </button>
         </div>
@@ -83,8 +83,8 @@ const MaterialsView: React.FC<MaterialsViewProps> = ({ initialScreen }) => {
 const MainCategorySelection: React.FC<{setScreen: (screen: MaterialScreen) => void}> = ({setScreen}) => (
      <div>
         <div className="text-center mb-12">
-            <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-transparent bg-clip-text">Study Materials</h2>
-            <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">Select a category to view the materials.</p>
+            <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">Study Materials</h2>
+            <p className="text-lg text-white/90 font-medium max-w-2xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">Select a category to view the materials.</p>
         </div>
         <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
              <CategoryCard title="NCERT Materials" description="Complete notes for Class 11 & 12" badge="2 PDFs" icon="fas fa-book" iconBg="bg-gradient-to-br from-purple-500 to-indigo-600" onClick={() => setScreen('ncert')} />
@@ -97,13 +97,13 @@ const MainCategorySelection: React.FC<{setScreen: (screen: MaterialScreen) => vo
 const NeetCategorySelection: React.FC<{setNeetSubView: (subView: NeetMaterialSubView) => void, onBack: () => void}> = ({setNeetSubView, onBack}) => (
     <div>
         <div className="mb-12">
-            <button onClick={onBack} className="flex items-center gap-2 font-semibold text-gray-600 hover:text-[#1D3557] mb-4">
+            <button onClick={onBack} className="flex items-center gap-2 font-semibold text-white/80 hover:text-white mb-4 [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
                 <i className="fas fa-arrow-left"></i>
                 <span>Back to Categories</span>
             </button>
             <div className="text-center">
-                <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text">NEET Materials</h2>
-                <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">Choose your class and medium</p>
+                <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">NEET Materials</h2>
+                <p className="text-lg text-white/90 font-medium max-w-2xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">Choose your class and medium</p>
             </div>
         </div>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -119,14 +119,14 @@ const MaterialList: React.FC<{title:string, description: string, materials: Mate
      <div>
         <div className="mb-12">
             {onBack && (
-                 <button onClick={onBack} className="flex items-center gap-2 font-semibold text-gray-600 hover:text-[#1D3557] mb-6">
+                 <button onClick={onBack} className="flex items-center gap-2 font-semibold text-white/80 hover:text-white mb-6 [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
                     <i className="fas fa-arrow-left"></i>
                     <span>Back</span>
                 </button>
             )}
             <div className="text-center">
-                <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-transparent bg-clip-text">{title}</h2>
-                <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">{description}</p>
+                <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">{title}</h2>
+                <p className="text-lg text-white/90 font-medium max-w-2xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">{description}</p>
             </div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -11,10 +11,12 @@ import { ViewType, MaterialScreen } from './types';
 const App: React.FC = () => {
     const [view, setView] = useState<ViewType>('home');
     const [initialMaterialScreen, setInitialMaterialScreen] = useState<MaterialScreen>('main');
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleSetView = (newView: ViewType, materialScreen: MaterialScreen = 'main') => {
         setView(newView);
         setInitialMaterialScreen(materialScreen);
+        setIsMenuOpen(false); // Close mobile menu on navigation
     };
 
     const renderView = () => {
@@ -32,10 +34,9 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-50 min-h-screen flex flex-col font-sans">
-            <div className="bg-animated-gradient fixed inset-0 z-[-1]"></div>
-            <Header />
-            <Navigation currentView={view} setView={handleSetView} />
+        <div className="min-h-screen flex flex-col font-sans">
+            <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+            <Navigation currentView={view} setView={handleSetView} isMenuOpen={isMenuOpen} />
             <main className="flex-grow max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
                 {renderView()}
             </main>

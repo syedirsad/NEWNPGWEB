@@ -4,6 +4,7 @@ import { ViewType } from '../types';
 interface NavigationProps {
     currentView: ViewType;
     setView: (view: ViewType) => void;
+    isMenuOpen: boolean;
 }
 
 const NavItem: React.FC<{
@@ -14,28 +15,63 @@ const NavItem: React.FC<{
 }> = ({ label, icon, isActive, onClick }) => (
     <button
         onClick={onClick}
-        className={`flex-1 sm:flex-none sm:px-6 py-3 rounded-full flex items-center justify-center gap-3 transition-all duration-300 ${
-            isActive
-                ? 'bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white shadow-lg scale-105'
-                : 'bg-white/60 text-gray-700 hover:bg-white hover:shadow-md'
+        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+            isActive 
+            ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg' 
+            : 'text-gray-700 hover:bg-gray-100'
         }`}
     >
         <i className={icon}></i>
-        <span className="font-semibold text-sm sm:text-base">{label}</span>
+        <span className="text-sm sm:text-base">{label}</span>
     </button>
 );
 
-const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
+const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpen }) => {
+    const navLinks = [
+        { label: "Home", icon: "fas fa-home", view: 'home' as ViewType },
+        { label: "Quizzes", icon: "fas fa-question-circle", view: 'quizzes' as ViewType },
+        { label: "Materials", icon: "fas fa-book-open", view: 'materials' as ViewType },
+        { label: "Question Bank", icon: "fas fa-archive", view: 'question-bank' as ViewType },
+    ];
+
     return (
-        <nav className="bg-white/50 backdrop-blur-lg sticky top-[96px] z-40 shadow-sm">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-center sm:justify-start py-2 space-x-2 sm:space-x-4">
-                    <NavItem label="Home" icon="fas fa-home" isActive={currentView === 'home'} onClick={() => setView('home')} />
-                    <NavItem label="Quizzes" icon="fas fa-question-circle" isActive={currentView === 'quizzes'} onClick={() => setView('quizzes')} />
-                    <NavItem label="Materials" icon="fas fa-book-open" isActive={currentView === 'materials'} onClick={() => setView('materials')} />
-                    <NavItem label="Question Bank" icon="fas fa-archive" isActive={currentView === 'question-bank'} onClick={() => setView('question-bank')} />
+        <nav className="bg-white sticky top-[80px] sm:top-[84px] z-40 shadow-md">
+            {/* Desktop Navigation */}
+            <div className="max-w-[1400px] mx-auto px-2 sm:px-6 lg:px-8">
+                <div className="hidden sm:flex justify-around sm:justify-start py-2 space-x-0 sm:space-x-2">
+                    {navLinks.map((link) => (
+                        <NavItem 
+                            key={link.view}
+                            label={link.label} 
+                            icon={link.icon} 
+                            isActive={currentView === link.view} 
+                            onClick={() => setView(link.view)} 
+                        />
+                    ))}
                 </div>
             </div>
+
+            {/* Mobile Navigation Menu */}
+            {isMenuOpen && (
+                 <div className="sm:hidden bg-white border-t border-gray-200">
+                    <div className="px-2 pt-2 pb-3 space-y-1">
+                        {navLinks.map((link) => (
+                           <button
+                                key={link.view}
+                                onClick={() => setView(link.view)}
+                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-md font-medium text-left transition-colors duration-200 ${
+                                    currentView === link.view
+                                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md'
+                                    : 'text-gray-700 hover:bg-gray-100'
+                                }`}
+                            >
+                                <i className={`${link.icon} w-5 text-center`}></i>
+                                <span>{link.label}</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
         </nav>
     );
 };

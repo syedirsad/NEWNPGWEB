@@ -5,50 +5,55 @@ interface HomeProps {
     setView: (view: ViewType, materialScreen?: MaterialScreen) => void;
 }
 
+const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; }> = ({ onClick, href, children }) => {
+    const commonClasses = "w-full bg-gradient-to-r from-sky-500 to-cyan-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/30 flex items-center justify-center gap-2 group";
+    
+    if (href) {
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer" className={commonClasses}>
+                {children}
+            </a>
+        );
+    }
+    
+    return (
+        <button onClick={onClick} className={commonClasses}>
+            {children}
+        </button>
+    );
+};
+
+
 const ResourceCard: React.FC<{
     title: string;
     description: string;
     icon: string;
     iconBgClass: string;
-    buttonText: string;
+    buttonText?: string;
     badge?: string;
     badgeBgClass?: string;
     onClick?: () => void;
     href?: string;
     children?: React.ReactNode;
 }> = ({ title, description, icon, iconBgClass, buttonText, badge, badgeBgClass, onClick, href, children }) => (
-    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col text-center">
+    <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col">
         <div className="flex items-start justify-between mb-4">
-            <div className={`w-16 h-16 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${iconBgClass}`}>
+            <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${iconBgClass}`}>
                 <i className={icon}></i>
             </div>
-            {badge && <div className={`px-3 py-1 rounded-full text-xs font-semibold ${badgeBgClass}`}>{badge}</div>}
+            {badge && <div className={`px-3 py-1 rounded-full text-xs font-bold ${badgeBgClass}`}>{badge}</div>}
         </div>
         <div className="flex-grow text-left">
             <h3 className="font-poppins text-xl font-bold text-gray-800 mb-2">{title}</h3>
-            <p className="text-gray-600 mb-4 text-sm">{description}</p>
+            <p className="text-gray-700 mb-4 text-sm leading-relaxed">{description}</p>
         </div>
         <div className="mt-auto">
             {children}
-            {onClick && (
-                <button 
-                    onClick={onClick}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 group"
-                >
+            {buttonText && (
+                <ActionButton onClick={onClick} href={href}>
                     <span>{buttonText}</span>
                     <i className="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
-                </button>
-            )}
-            {href && (
-                 <a 
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 group"
-                >
-                    <span>{buttonText}</span>
-                    <i className="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
-                </a>
+                </ActionButton>
             )}
         </div>
     </div>
@@ -63,22 +68,22 @@ const CommunityCard: React.FC<{
     iconBgClass: string;
     buttonBgClass: string;
 }> = ({ title, description, icon, buttonText, link, iconBgClass, buttonBgClass }) => (
-    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col text-center">
+    <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col text-center">
         <div className="mx-auto mb-4">
-            <div className={`w-20 h-20 rounded-full flex items-center justify-center text-white text-4xl shadow-md ${iconBgClass}`}>
+            <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white text-3xl shadow-md ${iconBgClass}`}>
                 <i className={icon}></i>
             </div>
         </div>
         <div className="flex-grow">
-            <h3 className="font-poppins text-2xl font-bold text-gray-800 mb-2">{title}</h3>
-            <p className="text-gray-600 mb-6">{description}</p>
+            <h3 className="font-poppins text-xl font-bold text-gray-800 mb-2">{title}</h3>
+            <p className="text-gray-700 mb-6 text-sm">{description}</p>
         </div>
         <div className="mt-auto">
             <a 
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full text-white font-semibold py-3 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 group ${buttonBgClass}`}
+                className={`w-full text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 group ${buttonBgClass}`}
             >
                 <span>{buttonText}</span>
                 <i className="fas fa-external-link-alt transform group-hover:scale-110 transition-transform"></i>
@@ -91,10 +96,10 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
     return (
         <div>
             <section className="text-center py-12 sm:py-20">
-                <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#1D3557] via-[#457B9D] to-[#A8DADC] text-transparent bg-clip-text">
+                <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white text-shadow-lg [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">
                     Your NEET Physics Companion
                 </h1>
-                <p className="text-lg sm:text-xl text-gray-600 font-medium max-w-3xl mx-auto">
+                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">
                     Access chapter-wise quizzes, comprehensive study materials, and detailed question banks to ace your exams.
                 </p>
             </section>
@@ -153,13 +158,12 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                     iconBgClass="bg-gradient-to-br from-slate-500 to-slate-700"
                     badge="Download"
                     badgeBgClass="bg-slate-100 text-slate-800"
-                    buttonText=""
                 >
                     <div className="space-y-3">
-                        <a href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white text-gray-700 font-semibold py-2 px-4 rounded-full border-2 border-gray-200 transition-all duration-300 hover:bg-gray-100 flex items-center justify-center gap-2">
+                        <a href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white/80 text-gray-800 font-semibold py-2 px-4 rounded-lg border-2 border-white/50 transition-all duration-300 hover:bg-white hover:border-white flex items-center justify-center gap-2">
                              <i className="fas fa-download"></i><span>English Medium</span>
                         </a>
-                         <a href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white text-gray-700 font-semibold py-2 px-4 rounded-full border-2 border-gray-200 transition-all duration-300 hover:bg-gray-100 flex items-center justify-center gap-2">
+                         <a href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" target="_blank" rel="noopener noreferrer" className="w-full bg-white/80 text-gray-800 font-semibold py-2 px-4 rounded-lg border-2 border-white/50 transition-all duration-300 hover:bg-white hover:border-white flex items-center justify-center gap-2">
                              <i className="fas fa-download"></i><span>ગુજરાતી માધ્યમ</span>
                         </a>
                     </div>
@@ -168,8 +172,8 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
 
              <section>
                 <div className="text-center mb-12">
-                     <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-emerald-500 to-green-600 text-transparent bg-clip-text">Join Our Learning Community</h2>
-                    <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">Connect with thousands of NEET aspirants and get your doubts solved.</p>
+                     <h2 className="font-poppins text-3xl sm:text-4xl font-extrabold mb-4 text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_40%)]">Join Our Learning Community</h2>
+                    <p className="text-lg text-white/90 font-medium max-w-2xl mx-auto [text-shadow:_0_1px_2px_rgb(0_0_0_/_40%)]">Connect with thousands of NEET aspirants and get your doubts solved.</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <CommunityCard 
