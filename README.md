@@ -1,8 +1,6 @@
 # NEET Physics Gujarati - Learning Portal
 
-This is an interactive learning portal for NEET Physics preparation, offering quizzes, important questions, and study materials in both English and Gujarati.
-
-This project has been set up with a professional build process using Vite for a fast, reliable, and scalable development experience.
+This project is an interactive learning portal for NEET Physics preparation. It's built with React, TypeScript, and Vite for a fast, reliable, and scalable development experience.
 
 ## Getting Started
 
@@ -13,7 +11,7 @@ You need to have [Node.js](https://nodejs.org/) (version 18 or newer) and npm in
 ### Installation
 
 1.  Clone the repository to your local machine.
-2.  Navigate to the project directory.
+2.  Navigate into the project directory.
 3.  Install the necessary dependencies:
     ```bash
     npm install
@@ -21,31 +19,19 @@ You need to have [Node.js](https://nodejs.org/) (version 18 or newer) and npm in
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm run dev`
 
-Runs the app in development mode.
-Open [http://localhost:5173](http://localhost:5173) (or the address shown in your terminal) to view it in the browser.
-
-The page will reload if you make edits. You will also see any lint errors in the console.
+Runs the app in development mode. Open the local address shown in your terminal (usually `http://localhost:5173`) to view it in your browser. The page will automatically reload when you make changes.
 
 ### `npm run build`
 
-Builds the app for production to the `dist` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes. Your app is ready to be deployed!
+Builds the app for production to the `dist` folder. It correctly bundles and optimizes your code for the best performance. This is the command that Netlify will use.
 
 ## Deployment to Netlify
 
-1.  Push your code to a GitHub repository.
-2.  Log in to your Netlify account.
-3.  Click on "Add new site" -> "Import an existing project".
-4.  Connect your GitHub repository.
-5.  Configure the build settings:
-    *   **Build command:** `npm run build`
-    *   **Publish directory:** `dist`
-6.  Click "Deploy site".
+If your site is already connected to a GitHub repository on Netlify, ensure the build settings are configured as follows:
 
-Netlify will automatically build and deploy your project from the `dist` folder.
+1.  **Build command:** `npm run build`
+2.  **Publish directory:** `dist`
+
+Pushing your updated code to the connected GitHub branch will trigger a new build and deploy your site automatically.

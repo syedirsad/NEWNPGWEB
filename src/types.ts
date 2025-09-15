@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export interface Material {
     title: string;
     subTitle: string;
