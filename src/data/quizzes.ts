@@ -38,9 +38,80 @@ export const class11Quizzes: Quiz[] = [
         title: "Work, Energy and Power", 
         description: "કાર્ય, ઊર્જા અને પાવર", 
         chapterInfo: "Chapter 5 - Class 11", 
-        link: "#", 
-        isComingSoon: true, 
+        link: "https://syedirsad.github.io/std11ch5/", 
         iconBgClass: "bg-gradient-to-br from-red-500 to-red-700"
+    },
+    { 
+        icon: "fas fa-sync-alt", 
+        title: "System of Particles & Rotational Motion", 
+        description: "કણોની પ્રણાલી અને ચાકગતિ", 
+        chapterInfo: "Chapter 6 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch6/", 
+        iconBgClass: "bg-gradient-to-br from-indigo-500 to-indigo-700"
+    },
+    { 
+        icon: "fas fa-globe", 
+        title: "Gravitation", 
+        description: "ગુરુત્વાકર્ષણ", 
+        chapterInfo: "Chapter 7 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch7/", 
+        iconBgClass: "bg-gradient-to-br from-slate-500 to-slate-700"
+    },
+    { 
+        icon: "fas fa-cube", 
+        title: "Mechanical Properties of Solids", 
+        description: "ઘન પદાર્થોના યાંત્રિક ગુણધર્મો", 
+        chapterInfo: "Chapter 8 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch8/", 
+        iconBgClass: "bg-gradient-to-br from-cyan-500 to-cyan-700"
+    },
+    { 
+        icon: "fas fa-tint", 
+        title: "Mechanical Properties of Fluids", 
+        description: "પ્રવાહીના યાંત્રિક ગુણધર્મો", 
+        chapterInfo: "Chapter 9 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch9/", 
+        iconBgClass: "bg-gradient-to-br from-blue-500 to-blue-700"
+    },
+    { 
+        icon: "fas fa-thermometer-half", 
+        title: "Thermal Properties of Matter", 
+        description: "પદાર્થના ઉષ્મીય ગુણધર્મો", 
+        chapterInfo: "Chapter 10 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch10/", 
+        iconBgClass: "bg-gradient-to-br from-amber-500 to-amber-700"
+    },
+    { 
+        icon: "fas fa-fire", 
+        title: "Thermodynamics", 
+        description: "ઉષ્માગતિકી", 
+        chapterInfo: "Chapter 11 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch11/", 
+        iconBgClass: "bg-gradient-to-br from-orange-500 to-red-600"
+    },
+    { 
+        icon: "fas fa-wind", 
+        title: "Kinetic Theory", 
+        description: "ગતિક સિદ્ધાંત", 
+        chapterInfo: "Chapter 12 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch12/", 
+        iconBgClass: "bg-gradient-to-br from-lime-500 to-lime-700"
+    },
+    { 
+        icon: "fas fa-wave-square", 
+        title: "Oscillations", 
+        description: "દોલનો", 
+        chapterInfo: "Chapter 13 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch13/", 
+        iconBgClass: "bg-gradient-to-br from-fuchsia-500 to-fuchsia-700"
+    },
+    { 
+        icon: "fas fa-water", 
+        title: "Waves", 
+        description: "તરંગો", 
+        chapterInfo: "Chapter 14 - Class 11", 
+        link: "https://syedirsad.github.io/std11ch14/", 
+        iconBgClass: "bg-gradient-to-br from-sky-400 to-sky-600"
     },
 ];
 
