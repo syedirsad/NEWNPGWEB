@@ -84,7 +84,7 @@ const BankCard: React.FC<{ bank: QuestionBank }> = ({ bank }) => {
                 </a>
                 <a href={bank.solutionLinks.gu} target="_blank" rel="noopener noreferrer" className={buttonClass}>
                     <i className="fas fa-download text-green-400"></i>
-                    <span className="font-gujarati">ગુજરાતી 마ધ્યમ PDF</span>
+                    <span className="font-gujarati">ગુજરાતી માધ્યમ PDF</span>
                 </a>
             </div>
         </div>

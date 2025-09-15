@@ -1,20 +1,51 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# NEET Physics Gujarati - Learning Portal
 
-# Run and deploy your AI Studio app
+This is an interactive learning portal for NEET Physics preparation, offering quizzes, important questions, and study materials in both English and Gujarati.
 
-This contains everything you need to run your app locally.
+This project has been set up with a professional build process using Vite for a fast, reliable, and scalable development experience.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1jJZd5xie3kzByErYJomhHGR01mS9xDxJ
+## Getting Started
 
-## Run Locally
+### Prerequisites
 
-**Prerequisites:**  Node.js
+You need to have [Node.js](https://nodejs.org/) (version 18 or newer) and npm installed on your machine.
 
+### Installation
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1.  Clone the repository to your local machine.
+2.  Navigate to the project directory.
+3.  Install the necessary dependencies:
+    ```bash
+    npm install
+    ```
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run dev`
+
+Runs the app in development mode.
+Open [http://localhost:5173](http://localhost:5173) (or the address shown in your terminal) to view it in the browser.
+
+The page will reload if you make edits. You will also see any lint errors in the console.
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes. Your app is ready to be deployed!
+
+## Deployment to Netlify
+
+1.  Push your code to a GitHub repository.
+2.  Log in to your Netlify account.
+3.  Click on "Add new site" -> "Import an existing project".
+4.  Connect your GitHub repository.
+5.  Configure the build settings:
+    *   **Build command:** `npm run build`
+    *   **Publish directory:** `dist`
+6.  Click "Deploy site".
+
+Netlify will automatically build and deploy your project from the `dist` folder.
