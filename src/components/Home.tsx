@@ -7,8 +7,8 @@ interface HomeProps {
 
 const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; className?: string; type?: 'primary' | 'secondary' }> = ({ onClick, href, children, className = '', type = 'primary' }) => {
     const commonClasses = `w-full font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 group transition-all duration-300 ${type === 'primary'
-            ? 'btn-primary'
-            : 'btn-secondary'
+        ? 'btn-primary'
+        : 'btn-secondary'
         } ${className}`;
 
     if (href) {
@@ -102,43 +102,53 @@ const CommunityCard: React.FC<{
 const Home: React.FC<HomeProps> = ({ setView }) => {
     return (
         <div className="animate-fade-in-up">
-            <section className="text-center py-24 sm:py-32 relative parallax-section" data-parallax-speed="0.3">
-                <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none" aria-hidden="true">
-                    <img src="https://cdn.jsdelivr.net/gh/syedirsad/CHAP1@main/logo.png" alt="" className="w-64 h-64 sm:w-96 sm:h-96 object-contain animate-pulse-glow" />
-                </div>
-                <div className="relative z-10 space-y-6">
-                    <h1 className="font-heading text-5xl sm:text-7xl font-extrabold mb-4 text-white tracking-tight">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-gray-400">NEET PHYSICS</span> <br />
-                        <span className="text-primary-neon drop-shadow-neon">GUJARATI</span>
-                    </h1>
-                    <p className="text-xl sm:text-2xl text-gray-300 font-light max-w-3xl mx-auto tracking-wide">
-                        Master Physics with the <span className="text-secondary-purple font-semibold">Ultimate Learning Platform</span> for Gujarati Medium.
-                    </p>
-                    <div className="flex justify-center pt-8">
-                        <div className="h-1 w-24 bg-gradient-to-r from-transparent via-primary-neon to-transparent rounded-full opacity-50"></div>
-                    </div>
-                </div>
-            </section>
+            <section className="text-center py-20 sm:py-32 relative parallax-section z-10" data-parallax-speed="0.3">
+                {/* Background decorative elements */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-mesh opacity-30 blur-3xl rounded-full pointer-events-none"></div>
 
-            <section className="flex justify-center mb-20 px-4 relative z-20 parallax-section" data-parallax-speed="0.2">
-                <a
-                    href="https://npgpapergen.netlify.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative group bg-background-surface border border-primary-neon/50 text-white font-bold py-6 px-10 rounded-2xl shadow-neon hover:shadow-[0_0_50px_rgba(0,242,255,0.4)] transition-all duration-300 transform hover:scale-105 overflow-hidden ring-1 ring-white/10"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-neon/10 to-secondary-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative flex items-center gap-4 text-lg sm:text-xl">
-                        <div className="w-12 h-12 rounded-full bg-primary-neon/20 flex items-center justify-center text-primary-neon animate-pulse">
-                            <i className="fas fa-magic text-2xl"></i>
-                        </div>
-                        <div className="text-left">
-                            <div className="text-xs text-primary-neon font-bold tracking-widest uppercase mb-1">New Feature</div>
-                            <div>Try Free Paper Generator (GSEB & CBSE)</div>
-                        </div>
-                        <i className="fas fa-arrow-right ml-4 text-gray-400 group-hover:text-white group-hover:translate-x-2 transition-transform"></i>
+                <div className="relative z-10 space-y-8">
+                    {/* Main Title with Holographic Effect */}
+                    <h1 className="font-heading text-6xl sm:text-8xl font-black mb-6 tracking-tighter relative inline-block">
+                        <span className="absolute inset-0 text-primary-neon opacity-20 blur-xl animate-pulse">NEET PHYSICS</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-white drop-shadow-[0_0_25px_rgba(0,242,255,0.4)] relative z-10">NEET PHYSICS</span>
+                        <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-neon to-secondary-purple drop-shadow-neon text-5xl sm:text-7xl">GUJARATI</span>
+                    </h1>
+
+                    {/* Subheading - Tech/Mission Style */}
+                    <p className="text-sm sm:text-lg text-cyan-100/70 font-mono uppercase tracking-[0.2em] max-w-2xl mx-auto border-x border-primary-neon/20 px-4 py-2 bg-background-deep/50 backdrop-blur-sm">
+                        Master Physics <span className="text-primary-neon">•</span> Ultimate Learning Platform <span className="text-primary-neon">•</span> Gujarati Medium
+                    </p>
+
+                    <div className="flex justify-center pt-8 pb-4">
+                        <div className="h-[1px] w-32 bg-gradient-to-r from-transparent via-primary-neon to-transparent opacity-70"></div>
                     </div>
-                </a>
+                </div>
+
+                {/* New Feature Badge - SciFi Version */}
+                <div className="flex justify-center mt-8">
+                    <a
+                        href="https://npgpapergen.netlify.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex items-center justify-between gap-6 bg-black/40 border border-primary-neon/30 backdrop-blur-md px-2 py-2 pr-8 rounded-full transition-all duration-300 hover:scale-105 hover:border-primary-neon hover:shadow-[0_0_40px_rgba(0,242,255,0.2)]"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-primary-neon/10 border border-primary-neon/50 shadow-[0_0_15px_rgba(0,242,255,0.3)]">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-neon opacity-20"></span>
+                                <i className="fas fa-rocket text-primary-neon text-lg"></i>
+                            </div>
+                            <div className="text-left">
+                                <span className="block text-[10px] font-bold uppercase tracking-widest text-primary-neon animate-pulse">New Feature</span>
+                                <span className="block text-sm font-bold text-white group-hover:text-cyan-100 transition-colors">Free Paper Generator <span className="text-xs font-normal text-gray-400 ml-1">(GSEB & CBSE)</span></span>
+                            </div>
+                        </div>
+                        <div className="h-8 w-[1px] bg-white/10"></div>
+                        <div className="text-primary-neon text-sm font-bold group-hover:translate-x-1 transition-transform">
+                            TRY NOW <i className="fas fa-chevron-right ml-1 text-xs"></i>
+                        </div>
+                    </a>
+                </div>
             </section>
 
             <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32 parallax-section" data-parallax-speed="0.1">
