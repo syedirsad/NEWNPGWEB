@@ -6,8 +6,11 @@ interface HomeProps {
 }
 
 const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: React.ReactNode; className?: string; type?: 'primary' | 'secondary' }> = ({ onClick, href, children, className = '', type = 'primary' }) => {
-    const commonClasses = `w-full text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 group btn-glossy ${type === 'primary' ? 'active' : ''} ${className}`;
-    
+    const commonClasses = `w-full font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 group transition-all duration-300 ${type === 'primary'
+            ? 'btn-primary'
+            : 'btn-secondary'
+        } ${className}`;
+
     if (href) {
         return (
             <a href={href} target="_blank" rel="noopener noreferrer" className={commonClasses}>
@@ -15,7 +18,7 @@ const ActionButton: React.FC<{ onClick?: () => void; href?: string; children: Re
             </a>
         );
     }
-    
+
     return (
         <button onClick={onClick} className={commonClasses}>
             {children}
@@ -28,26 +31,33 @@ const ResourceCard: React.FC<{
     title: string;
     description: string;
     icon: string;
-    iconBgClass: string;
+    iconColorClass: string;
     buttonText?: string;
     badge?: string;
-    badgeBgClass?: string;
+    badgeColorClass?: string;
     onClick?: () => void;
     href?: string;
     children?: React.ReactNode;
-}> = ({ title, description, icon, iconBgClass, buttonText, badge, badgeBgClass, onClick, href, children }) => (
-    <div className="card-3d flex flex-col p-6">
-        <div className="flex items-start justify-between mb-4">
-            <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white text-2xl shadow-md ${iconBgClass}`}>
+}> = ({ title, description, icon, iconColorClass, buttonText, badge, badgeColorClass, onClick, href, children }) => (
+    <div className="glass-panel p-8 card-hover-effect flex flex-col relative overflow-hidden group">
+        {/* Glow Effect */}
+        <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500 ${iconColorClass.replace('text-', 'bg-')}`}></div>
+
+        <div className="flex items-start justify-between mb-6 relative z-10">
+            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-white/10 ${iconColorClass} bg-white/5`}>
                 <i className={icon}></i>
             </div>
-            {badge && <div className={`px-3 py-1 rounded-full text-xs font-bold ${badgeBgClass}`}>{badge}</div>}
+            {badge && (
+                <div className={`px-3 py-1 rounded-full text-xs font-bold border ${badgeColorClass} bg-opacity-10 backdrop-blur-sm`}>
+                    {badge}
+                </div>
+            )}
         </div>
-        <div className="flex-grow text-left">
-            <h3 className="font-poppins text-xl font-bold text-white mb-2">{title}</h3>
-            <p className="text-white/80 mb-4 text-sm leading-relaxed">{description}</p>
+        <div className="flex-grow text-left relative z-10">
+            <h3 className="font-heading text-2xl font-bold text-white mb-3 group-hover:text-primary-neon transition-colors">{title}</h3>
+            <p className="text-gray-400 mb-6 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">{description}</p>
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto relative z-10">
             {children}
             {buttonText && (
                 <ActionButton onClick={onClick} href={href}>
@@ -65,28 +75,25 @@ const CommunityCard: React.FC<{
     icon: string;
     buttonText: string;
     link: string;
-    iconBgClass: string;
-    buttonBgClass: string;
-}> = ({ title, description, icon, buttonText, link, iconBgClass, buttonBgClass }) => (
-    <div className="card-3d flex flex-col text-center p-6">
-        <div className="mx-auto mb-4">
-            <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white text-3xl shadow-md ${iconBgClass}`}>
-                <i className={icon}></i>
-            </div>
+    colorClass: string;
+}> = ({ title, description, icon, buttonText, link, colorClass }) => (
+    <div className="glass-panel p-6 text-center card-hover-effect group relative overflow-hidden border-t-2 border-transparent hover:border-white/20">
+        <div className={`mx-auto mb-6 w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-lg border-4 border-background-deep ${colorClass} bg-white transition-transform group-hover:scale-110 group-hover:rotate-6`}>
+            <i className={icon}></i>
         </div>
         <div className="flex-grow">
-            <h3 className="font-poppins text-xl font-bold text-white mb-2">{title}</h3>
-            <p className="text-white/80 mb-6 text-sm">{description}</p>
+            <h3 className="font-heading text-xl font-bold text-white mb-2">{title}</h3>
+            <p className="text-gray-400 mb-6 text-sm">{description}</p>
         </div>
         <div className="mt-auto">
-            <a 
+            <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-full text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 group ${buttonBgClass}`}
+                className={`w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-bold text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${colorClass.replace('text-', 'bg-')} hover:brightness-110`}
             >
                 <span>{buttonText}</span>
-                <i className="fas fa-external-link-alt transform group-hover:scale-110 transition-transform"></i>
+                <i className="fas fa-external-link-alt text-sm"></i>
             </a>
         </div>
     </div>
@@ -94,143 +101,156 @@ const CommunityCard: React.FC<{
 
 const Home: React.FC<HomeProps> = ({ setView }) => {
     return (
-        <div>
-            <section className="text-center py-20 sm:py-28 relative parallax-section" data-parallax-speed="0.3">
-                 <div className="absolute inset-0 flex items-center justify-center opacity-10" aria-hidden="true">
-                    <img src="https://cdn.jsdelivr.net/gh/syedirsad/CHAP1@main/logo.png" alt="" className="w-48 h-48 sm:w-64 sm:h-64 object-contain animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="animate-fade-in-up">
+            <section className="text-center py-24 sm:py-32 relative parallax-section" data-parallax-speed="0.3">
+                <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none" aria-hidden="true">
+                    <img src="https://cdn.jsdelivr.net/gh/syedirsad/CHAP1@main/logo.png" alt="" className="w-64 h-64 sm:w-96 sm:h-96 object-contain animate-pulse-glow" />
                 </div>
-                <div className="relative z-10">
-                    <h1 className="font-poppins text-4xl sm:text-6xl font-extrabold mb-4 text-white animate-glow">
-                        NEET PHYSICS GUJARATI
+                <div className="relative z-10 space-y-6">
+                    <h1 className="font-heading text-5xl sm:text-7xl font-extrabold mb-4 text-white tracking-tight">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-gray-400">NEET PHYSICS</span> <br />
+                        <span className="text-primary-neon drop-shadow-neon">GUJARATI</span>
                     </h1>
-                    <p className="text-xl sm:text-2xl text-white/90 font-medium max-w-3xl mx-auto" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
-                        Learn Smarter
+                    <p className="text-xl sm:text-2xl text-gray-300 font-light max-w-3xl mx-auto tracking-wide">
+                        Master Physics with the <span className="text-secondary-purple font-semibold">Ultimate Learning Platform</span> for Gujarati Medium.
                     </p>
+                    <div className="flex justify-center pt-8">
+                        <div className="h-1 w-24 bg-gradient-to-r from-transparent via-primary-neon to-transparent rounded-full opacity-50"></div>
+                    </div>
                 </div>
             </section>
 
-            <section className="flex justify-center mb-16 px-4 relative z-20 parallax-section" data-parallax-speed="0.2">
-                <a 
-                    href="https://npgpapergen.netlify.app/" 
-                    target="_blank" 
+            <section className="flex justify-center mb-20 px-4 relative z-20 parallax-section" data-parallax-speed="0.2">
+                <a
+                    href="https://npgpapergen.netlify.app/"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white font-extrabold py-4 px-6 sm:px-10 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.6)] hover:shadow-[0_0_40px_rgba(245,158,11,0.8)] transition-all duration-300 transform hover:scale-105 flex items-center gap-3 text-center text-sm sm:text-lg border-2 border-white/20 group"
+                    className="relative group bg-background-surface border border-primary-neon/50 text-white font-bold py-6 px-10 rounded-2xl shadow-neon hover:shadow-[0_0_50px_rgba(0,242,255,0.4)] transition-all duration-300 transform hover:scale-105 overflow-hidden ring-1 ring-white/10"
                 >
-                    <i className="fas fa-magic text-yellow-200 text-xl animate-pulse"></i>
-                    <span className="text-shadow-sm tracking-wide">TRY OUR FREE PAPER GENERATOR FOR GSEB AND CBSE</span>
-                    <i className="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-neon/10 to-secondary-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative flex items-center gap-4 text-lg sm:text-xl">
+                        <div className="w-12 h-12 rounded-full bg-primary-neon/20 flex items-center justify-center text-primary-neon animate-pulse">
+                            <i className="fas fa-magic text-2xl"></i>
+                        </div>
+                        <div className="text-left">
+                            <div className="text-xs text-primary-neon font-bold tracking-widest uppercase mb-1">New Feature</div>
+                            <div>Try Free Paper Generator (GSEB & CBSE)</div>
+                        </div>
+                        <i className="fas fa-arrow-right ml-4 text-gray-400 group-hover:text-white group-hover:translate-x-2 transition-transform"></i>
+                    </div>
                 </a>
             </section>
 
-            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 parallax-section" data-parallax-speed="0.1">
-                 <ResourceCard
+            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32 parallax-section" data-parallax-speed="0.1">
+                <ResourceCard
                     title="Chapterwise Quizzes"
-                    description="Test your knowledge with quizzes for every chapter of Class 11 & 12."
-                    icon="fas fa-question-circle"
-                    iconBgClass="bg-gradient-to-br from-amber-500 to-red-500"
+                    description="Test your knowledge with adaptive quizzes for every chapter of Class 11 & 12."
+                    icon="fas fa-brain"
+                    iconColorClass="text-amber-500"
                     buttonText="Start Practicing"
                     onClick={() => setView('quizzes')}
                 />
                 <ResourceCard
                     title="NEET Materials"
-                    description="Complete chapter-wise NEET preparation materials for Class 11 & 12."
-                    icon="fas fa-graduation-cap"
-                    iconBgClass="bg-gradient-to-br from-rose-500 to-pink-600"
-                    badge="NEET"
-                    badgeBgClass="bg-pink-100 text-pink-800"
+                    description="Comprehensive chapter-wise preparation materials tailored for NEET aspirants."
+                    icon="fas fa-microscope"
+                    iconColorClass="text-pink-500"
+                    badge="PREMIUM"
+                    badgeColorClass="border-pink-500 text-pink-400"
                     buttonText="Explore Materials"
                     onClick={() => setView('materials', 'neet')}
                 />
                 <ResourceCard
                     title="NCERT Materials"
-                    description="Complete NCERT Physics notes for Class 11 & 12 in English Medium."
-                    icon="fas fa-book"
-                    iconBgClass="bg-gradient-to-br from-purple-500 to-indigo-600"
-                    badge="PDF"
-                    badgeBgClass="bg-purple-100 text-purple-800"
-                    buttonText="View Materials"
+                    description="Complete NCERT Physics notes and solutions for Class 11 & 12."
+                    icon="fas fa-book-reader"
+                    iconColorClass="text-indigo-400"
+                    badge="ESSENTIAL"
+                    badgeColorClass="border-indigo-400 text-indigo-300"
+                    buttonText="View Library"
                     onClick={() => setView('materials', 'ncert')}
                 />
                 <ResourceCard
                     title="GSEB Question Bank"
-                    description="Solve official board question banks with detailed, section-wise solutions."
+                    description="Official board question banks with detailed step-by-step solutions."
                     icon="fas fa-university"
-                    iconBgClass="bg-gradient-to-br from-sky-500 to-cyan-600"
+                    iconColorClass="text-cyan-400"
                     buttonText="View Solutions"
                     onClick={() => setView('question-bank')}
                 />
-                 <ResourceCard
+                <ResourceCard
                     title="GSEB Blueprint 2026"
-                    description="Complete Exam Blueprint & Strategy for the Class 12 Physics Exam."
-                    icon="fas fa-chart-line"
-                    iconBgClass="bg-gradient-to-br from-emerald-500 to-green-600"
-                    badge="Essential"
-                    badgeBgClass="bg-green-100 text-green-800"
+                    description="Strategic Exam Blueprint & Preparation Guide for Class 12 Physics."
+                    icon="fas fa-chess-knight"
+                    iconColorClass="text-emerald-400"
+                    badge="STRATEGY"
+                    badgeColorClass="border-emerald-400 text-emerald-300"
                     buttonText="View Blueprint"
                     href="https://syedirsad.github.io/march2026tips/"
                 />
                 <ResourceCard
                     title="Board Exam Papers"
-                    description="GSEB Physics Papers (2018-2025) for English & Gujarati medium."
-                    icon="fas fa-file-alt"
-                    iconBgClass="bg-gradient-to-br from-slate-500 to-slate-700"
-                    badge="Download"
-                    badgeBgClass="bg-slate-100 text-slate-800"
+                    description="Archive of GSEB Physics Papers (2018-2025) for both mediums."
+                    icon="fas fa-history"
+                    iconColorClass="text-slate-200"
+                    badge="DOWNLOAD"
+                    badgeColorClass="border-slate-400 text-slate-300"
                 >
-                    <div className="space-y-3">
-                        <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" type="secondary">
-                             <i className="fas fa-download"></i><span>English Medium</span>
+                    <div className="grid grid-cols-2 gap-3 mt-4">
+                        <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/EM%20PHYSICS%20BOARDS%20PAPER.pdf" type="secondary" className="!py-2 !px-3 !text-sm">
+                            <i className="fas fa-download"></i><span>English</span>
                         </ActionButton>
-                         <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" type="secondary">
-                             <i className="fas fa-download"></i><span>ગુજરાતી માધ્યમ</span>
+                        <ActionButton href="https://github.com/syedirsad/allpdf/raw/main/GM%20PHYSICS%20BOARDS%20PAPER.pdf" type="secondary" className="!py-2 !px-3 !text-sm">
+                            <i className="fas fa-download"></i><span>Gujarati</span>
                         </ActionButton>
                     </div>
                 </ResourceCard>
             </section>
 
-             <hr className="glowing-divider" />
-
-             <section className="parallax-section" data-parallax-speed="0.05">
-                <div className="text-center mb-12">
-                     <h2 className="section-title text-3xl sm:text-4xl">Join Our Learning Community</h2>
-                    <p className="section-subtitle text-lg">Connect with thousands of NEET aspirants and get your doubts solved.</p>
+            <div className="relative py-12 mb-12">
+                <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-primary-neon/50 to-transparent shadow-neon"></div>
+                <div className="relative z-10 flex justify-center">
+                    <span className="px-6 py-2 bg-background-deep text-primary-neon border border-primary-neon/30 rounded-full font-mono text-sm tracking-widest uppercase shadow-neon">Community</span>
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <CommunityCard 
+            </div>
+
+            <section className="parallax-section" data-parallax-speed="0.05">
+                <div className="text-center mb-16 space-y-4">
+                    <h2 className="font-heading text-4xl sm:text-5xl font-bold text-white">Join The Revolution</h2>
+                    <p className="text-xl text-gray-400">Connect with thousands of aspirants. Learn, Share, Succeed.</p>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <CommunityCard
                         title="YouTube"
-                        description="Watch NEET Physics content, live sessions, and PYQ walkthroughs."
+                        description="High-quality video lectures & PYQ solutions."
                         icon="fab fa-youtube"
-                        buttonText="Subscribe Now"
+                        buttonText="Subscribe"
                         link="https://www.youtube.com/@npgujarati"
-                        iconBgClass="bg-red-600"
-                        buttonBgClass="bg-red-500 hover:bg-red-600 hover:shadow-[0_0_15px_rgba(239,68,68,0.7)]"
+                        colorClass="text-red-600"
                     />
-                     <CommunityCard 
+                    <CommunityCard
                         title="WhatsApp"
-                        description="Join our active study group for peer discussions and important updates."
+                        description="Real-time doubts & study group."
                         icon="fab fa-whatsapp"
                         buttonText="Join Group"
                         link="https://chat.whatsapp.com/LGeExJ4a5562e13B04uuQm"
-                        iconBgClass="bg-green-500"
-                        buttonBgClass="bg-green-500 hover:bg-green-600 hover:shadow-[0_0_15px_rgba(34,197,94,0.7)]"
+                        colorClass="text-green-500"
                     />
-                     <CommunityCard 
+                    <CommunityCard
                         title="Telegram"
-                        description="Get instant updates, study materials, and important notices."
+                        description="Notes, PDFs & Important alerts."
                         icon="fab fa-telegram"
                         buttonText="Join Channel"
                         link="https://t.me/neet_physics_gujarati"
-                        iconBgClass="bg-sky-500"
-                        buttonBgClass="bg-sky-500 hover:bg-sky-600 hover:shadow-[0_0_15px_rgba(14,165,233,0.7)]"
+                        colorClass="text-sky-500"
                     />
-                     <CommunityCard 
+                    <CommunityCard
                         title="Instagram"
-                        description="Follow for quick tips, visual learning content, and daily motivation."
+                        description="Daily motivation & quick tips."
                         icon="fab fa-instagram"
-                        buttonText="Follow Us"
+                        buttonText="Follow"
                         link="https://instagram.com/neet_physics.gujarati"
-                        iconBgClass="bg-gradient-to-br from-purple-600 to-pink-600"
-                        buttonBgClass="bg-gradient-to-r from-purple-500 to-pink-500 hover:shadow-[0_0_15px_rgba(219,39,119,0.7)]"
+                        colorClass="text-pink-600"
                     />
                 </div>
             </section>

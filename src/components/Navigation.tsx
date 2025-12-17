@@ -15,14 +15,13 @@ const NavItem: React.FC<{
 }> = ({ label, icon, isActive, onClick }) => (
     <button
         onClick={onClick}
-        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 transform btn-glossy ${
-            isActive 
-            ? 'active' 
-            : ''
-        }`}
+        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 transform border ${isActive
+                ? 'bg-primary-neon/10 border-primary-neon text-primary-neon shadow-neon scale-105'
+                : 'bg-white/5 border-transparent text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20'
+            }`}
     >
         <i className={icon}></i>
-        <span className="text-sm sm:text-base">{label}</span>
+        <span className="text-sm sm:text-base tracking-wide">{label}</span>
     </button>
 );
 
@@ -36,17 +35,17 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpe
     ];
 
     return (
-        <nav className="glass-nav sticky top-[80px] sm:top-[84px] z-40">
+        <nav className={`transition-all duration-300 ${isMenuOpen ? 'bg-background-deep/95 backdrop-blur-xl' : 'glass-nav'} sticky top-[88px] z-40 border-b border-white/5`}>
             {/* Desktop Navigation */}
-            <div className="max-w-[1400px] mx-auto px-2 sm:px-6 lg:px-8">
-                <div className="hidden sm:flex justify-around sm:justify-start py-2 space-x-0 sm:space-x-2">
+            <div className={`max-w-[1600px] mx-auto px-2 sm:px-6 lg:px-8 ${isMenuOpen ? 'hidden sm:block' : ''}`}>
+                <div className="hidden sm:flex justify-start py-3 space-x-3 overflow-x-auto no-scrollbar">
                     {navLinks.map((link) => (
-                        <NavItem 
+                        <NavItem
                             key={link.view}
-                            label={link.label} 
-                            icon={link.icon} 
-                            isActive={currentView === link.view} 
-                            onClick={() => setView(link.view)} 
+                            label={link.label}
+                            icon={link.icon}
+                            isActive={currentView === link.view}
+                            onClick={() => setView(link.view)}
                         />
                     ))}
                 </div>
@@ -54,20 +53,21 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView, isMenuOpe
 
             {/* Mobile Navigation Menu */}
             {isMenuOpen && (
-                 <div className="sm:hidden border-t border-white/10">
-                    <div className="px-2 pt-2 pb-3 space-y-1">
+                <div className="sm:hidden border-t border-white/5 animate-shimmer">
+                    <div className="px-4 py-4 space-y-2 bg-background-deep/90 backdrop-blur-xl">
                         {navLinks.map((link) => (
-                           <button
+                            <button
                                 key={link.view}
                                 onClick={() => setView(link.view)}
-                                className={`w-full flex items-center gap-3 px-4 py-3 rounded-md font-medium text-left transition-colors duration-200 ${
-                                    currentView === link.view
-                                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md'
-                                    : 'text-white/80 hover:bg-white/10'
-                                }`}
+                                className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl font-medium text-left transition-all duration-200 border ${currentView === link.view
+                                        ? 'bg-primary-neon/10 border-primary-neon text-primary-neon shadow-neon'
+                                        : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                    }`}
                             >
-                                <i className={`${link.icon} w-5 text-center`}></i>
-                                <span>{link.label}</span>
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${currentView === link.view ? 'bg-primary-neon/20' : 'bg-white/5'}`}>
+                                    <i className={`${link.icon} text-lg`}></i>
+                                </div>
+                                <span className="text-lg">{link.label}</span>
                             </button>
                         ))}
                     </div>

@@ -26,22 +26,25 @@ const FloatingObjects: React.FC = () => {
     ];
 
     return (
-        <div className="floating-objects-container">
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
             {objects.map((obj, index) => (
-                <div 
+                <div
                     key={index}
-                    className="floating-object"
-                    style={{ 
-                        top: obj.top, 
-                        left: obj.left, 
+                    className="absolute text-white/5 text-4xl md:text-6xl animate-float-slow"
+                    style={{
+                        top: obj.top,
+                        left: obj.left,
                         animationDuration: obj.animationDuration,
-                        animationDelay: `${index * 1.5}s`
+                        animationDelay: `${index * 1.5}s`,
+                        textShadow: '0 0 15px rgba(255, 255, 255, 0.1)'
                     }}
                     aria-hidden="true"
                 >
-                    {obj.icon ? <i className={obj.icon}></i> : <span style={{ fontFamily: 'serif' }}>{obj.symbol}</span>}
+                    {obj.icon ? <i className={obj.icon}></i> : <span className="font-serif">{obj.symbol}</span>}
                 </div>
             ))}
+            {/* Background Mesh Gradients */}
+            <div className="absolute top-0 left-0 w-full h-full bg-mesh opacity-40 z-[-1]"></div>
         </div>
     );
 };
@@ -93,12 +96,12 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col font-sans relative overflow-x-hidden">
+        <div className="min-h-screen flex flex-col font-sans relative selection:bg-primary-neon/30 selection:text-white">
             <FloatingObjects />
             <div className="relative z-10 flex flex-col min-h-screen">
                 <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
                 <Navigation currentView={view} setView={handleSetView} isMenuOpen={isMenuOpen} />
-                <main className="flex-grow max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
+                <main className="flex-grow max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 w-full py-8">
                     {renderView()}
                 </main>
                 <Footer />
