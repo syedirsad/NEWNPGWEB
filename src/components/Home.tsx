@@ -109,6 +109,19 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                 </div>
             </section>
 
+            <section className="flex justify-center mb-16 px-4 relative z-20 parallax-section" data-parallax-speed="0.2">
+                <a 
+                    href="https://npgpapergen.netlify.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white font-extrabold py-4 px-6 sm:px-10 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.6)] hover:shadow-[0_0_40px_rgba(245,158,11,0.8)] transition-all duration-300 transform hover:scale-105 flex items-center gap-3 text-center text-sm sm:text-lg border-2 border-white/20 group"
+                >
+                    <i className="fas fa-magic text-yellow-200 text-xl animate-pulse"></i>
+                    <span className="text-shadow-sm tracking-wide">TRY OUR FREE PAPER GENERATOR FOR GSEB AND CBSE</span>
+                    <i className="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </section>
+
             <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24 parallax-section" data-parallax-speed="0.1">
                  <ResourceCard
                     title="Chapterwise Quizzes"
