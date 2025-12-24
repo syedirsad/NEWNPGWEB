@@ -149,6 +149,30 @@ const Home: React.FC<HomeProps> = ({ setView }) => {
                         </div>
                     </a>
                 </div>
+
+                {/* Store Button */}
+                <div className="flex justify-center mt-6">
+                    <a
+                        href="https://npgstore.netlify.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative flex items-center justify-between gap-6 bg-amber-500/10 border border-amber-500/30 backdrop-blur-md px-2 py-2 pr-8 rounded-full transition-all duration-300 hover:scale-105 hover:border-amber-500 hover:shadow-[0_0_40px_rgba(245,158,11,0.2)]"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 border border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+                                <i className="fas fa-book-open text-amber-500 text-lg"></i>
+                            </div>
+                            <div className="text-left">
+                                <span className="block text-[10px] font-bold uppercase tracking-widest text-amber-500">Exam Oriented</span>
+                                <span className="block text-sm font-bold text-white group-hover:text-amber-100 transition-colors">Buy Our Books <span className="text-xs font-normal text-gray-400 ml-1">(Both Medium)</span></span>
+                            </div>
+                        </div>
+                        <div className="h-8 w-[1px] bg-white/10"></div>
+                        <div className="text-amber-500 text-sm font-bold group-hover:translate-x-1 transition-transform">
+                            VISIT STORE <i className="fas fa-chevron-right ml-1 text-xs"></i>
+                        </div>
+                    </a>
+                </div>
             </section>
 
             <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32 parallax-section" data-parallax-speed="0.1">
